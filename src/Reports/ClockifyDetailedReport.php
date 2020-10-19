@@ -58,7 +58,6 @@ class ClockifyDetailedReport extends ClockifyReport
             $this->mergeWhen(!is_null($this->taskIds), [
                 'tasks' => [
                     'ids' => $this->taskIds,
-                    'containedInTimeentry' => 'CONTAINS',
                     'status' => 'ALL',
                 ],
             ]),
