@@ -2,8 +2,8 @@
 
 namespace Sourceboat\LaravelClockifyApi\Repositories;
 
-use App\Clockify\Reports\ClockifyDetailedReport;
-use App\Clockify\Reports\ClockifySummaryReport;
+use Sourceboat\LaravelClockifyApi\Reports\ClockifyDetailedReport;
+use Sourceboat\LaravelClockifyApi\Reports\ClockifySummaryReport;
 
 class ClockifyRepository
 {
