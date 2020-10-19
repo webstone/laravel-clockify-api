@@ -1,5 +1,9 @@
 # Laravel Clockify API WIP
 
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/sourceboat/laravel-clockify-api.svg?style=flat-square)](https://packagist.org/packages/sourceboat/laravel-clockify-api)
+[![Build Status](https://img.shields.io/travis/sourceboat/laravel-clockify-api/develop.svg?style=flat-square)](https://travis-ci.org/sourceboat/laravel-clockify-api)
+[![Total Downloads](https://img.shields.io/packagist/dt/sourceboat/laravel-clockify-api.svg?style=flat-square)](https://packagist.org/packages/sourceboat/laravel-clockify-api)
+
 Laravel repository to fetch reports from the Clockify.me reports API.
 
 Official clockify API: https://clockify.me/developers-api
