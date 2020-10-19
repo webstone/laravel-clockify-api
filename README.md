@@ -2,6 +2,8 @@
 
 Laravel repository to fetch reports from the Clockify.me reports API.
 
+Official clockify API: https://clockify.me/developers-api
+
 ## Installation
 
 1. You can install the package via composer: 
@@ -70,6 +72,8 @@ $summaryResponseBody = ClockifyRepository::makeSummaryReport()
 | `to` | `to(Carbon $endDate)` | end of current year | ALL |
 | `sortOrder` | `sortOrder(string $sortOrder)` | `DESCENDING` | ALL |
 | `filterGroups` | `filterGroups(array $filterGroups)` | `['USER', 'PROJECT', 'TIMEENTRY']` | ClockifySummaryReport |
+| `page` | `page(int $page)`| 1 | ClockifyDetailedReport |  
+| `pageSize` | `pageSize(int $pageSize)`| 50 | ClockifyDetailedReport |
 
 ## Changelog
 
