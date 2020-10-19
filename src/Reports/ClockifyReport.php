@@ -100,4 +100,5 @@ abstract class ClockifyReport
         $this->sortOrder = $sortOrder;
         return $this;
     }
+
 }
