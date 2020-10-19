@@ -12,7 +12,9 @@ class LaravelClockifyApiServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-       // nothing
+        $this->publishes([
+            __DIR__ . '/../config/clockify.php' => config_path('clockify.php'),
+        ], 'clockify-config');
     }
 
     /**
@@ -20,7 +22,7 @@ class LaravelClockifyApiServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        // nothing
+        $this->mergeConfigFrom(__DIR__ . '/../config/clockify.php', 'clockify');
     }
 
 }
