@@ -61,7 +61,7 @@ $summaryResponseBody = ClockifyRepository::makeSummaryReport()
 
 ### Attributes to specify a request
 
-| Attribute | function name | default | report |
+| Attribute | function | default behaviour or `value`| possible for reports |
 |---|---|---|---|
 | `users` | `users(array $userIds)` | all | ALL |
 | `tags` | `tags(array $tagIds)` | all | ALL |
