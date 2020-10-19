@@ -1,0 +1,10 @@
+version: 2
+updates:
+  - package-ecosystem: "composer"
+    directory: "/"
+    schedule:
+      interval: "daily"
+  reviewers:
+  - SebastianMueller87
+  assignees:
+  - SebastianMueller87
