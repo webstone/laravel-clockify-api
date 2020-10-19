@@ -1,4 +1,4 @@
-# clockify-laravel-api WIP
+# Clockify laravel api WIP
 
 Laravel repository to fetch reports from the Clockify.me reports API.
 
@@ -33,7 +33,7 @@ Laravel repository to fetch reports from the Clockify.me reports API.
 
 ### Basically 
 
-You can get a report by calling creating an report and calling the `get()` function.
+You can get a report by creating a report and calling the `get()` function.
 
 ```
 $summaryResponseBody = ClockifyRepository::makeSummaryReport()->get();
