@@ -36,7 +36,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Sourceboat\\LaravelClockifyApi\\Test\\": "tests"
+            "Sourceboat\\LaravelClockifyApi\\Tests\\": "tests"
         }
     },
     "scripts": {
