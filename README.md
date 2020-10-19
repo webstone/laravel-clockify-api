@@ -63,17 +63,20 @@ $summaryResponseBody = ClockifyRepository::makeSummaryReport()
 
 ### Attributes to specify a request
 
-| Attribute | function | default behaviour or `value`| possible for reports |
+| Attribute | function | default behaviour or `value` <br>(when not set)| possible for reports |
 |---|---|---|---|
 | `users` | `users(array $userIds)` | all | ALL |
-| `tags` | `tags(array $tagIds)` | all | ALL |
-| `tasks` | `tasks(array $taskIds)` | all | ALL |
+| `containsTags` | `containsTags(array $tagIds)` | `CONTAINS` | ALL |
+| `containsOnlyTags` | `containsOnlyTags(array $tagIds)` | `CONTAINS` | ALL |
+| `doesNotContainTags` | `doesNotContainTags(array $tagIds)` | `CONTAINS` | ALL || `tasks` | `tasks(array $taskIds)` | all | ALL |
 | `from` | `from(Carbon $fromDate)` | start of current year | ALL |
 | `to` | `to(Carbon $endDate)` | end of current year | ALL |
 | `sortOrder` | `sortOrder(string $sortOrder)` | `DESCENDING` | ALL |
 | `filterGroups` | `filterGroups(array $filterGroups)` | `['USER', 'PROJECT', 'TIMEENTRY']` | ClockifySummaryReport |
 | `page` | `page(int $page)`| 1 | ClockifyDetailedReport |  
 | `pageSize` | `pageSize(int $pageSize)`| 50 | ClockifyDetailedReport |
+
+
 
 ## Changelog
 
