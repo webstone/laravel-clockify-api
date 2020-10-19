@@ -2,28 +2,23 @@
 
 namespace Sourceboat\LaravelClockifyApi\Reports;
 
-use Carbon\Carbon;
 use Illuminate\Http\Resources\ConditionallyLoadsAttributes;
 use Illuminate\Support\Facades\Http;
+use Sourceboat\LaravelClockifyApi\Reports\Traits\HasTags;
+use Sourceboat\LaravelClockifyApi\Reports\Traits\HasTimes;
 
 abstract class ClockifyReport
 {
 
     use ConditionallyLoadsAttributes;
+    use HasTags;
+    use HasTimes;
 
     private const REPORTS_ENDPOINT = 'https://reports.api.clockify.me/v1';
 
     protected $userIds = null;
 
-    protected $tagIds = null;
-
     protected $taskIds = null;
-
-    protected $tagsContainedInTimeentry = 'CONTAINS';
-
-    protected Carbon $dateRangeStart;
-
-    protected Carbon $dateRangeEnd;
 
     protected string $reportEndpoint = '';
 
@@ -73,42 +68,9 @@ abstract class ClockifyReport
         return $this;
     }
 
-    public function containsTags(array $tagIds)
-    {
-        $this->tagIds = $tagIds;
-        $this->tagsContainedInTimeentry = 'CONTAINS';
-        return $this;
-    }
-
-    public function containsOnlyTags(array $tagIds)
-    {
-        $this->tagIds = $tagIds;
-        $this->tagsContainedInTimeentry = 'CONTAINS_ONLY';
-        return $this;
-    }
-
-    public function doesNotContainTags(array $tagIds)
-    {
-        $this->tagIds = $tagIds;
-        $this->tagsContainedInTimeentry = 'DOES_NOT_CONTAIN';
-        return $this;
-    }
-
     public function tasks(array $taskIds)
     {
         $this->taskIds = $taskIds;
-        return $this;
-    }
-
-    public function from(Carbon $fromDate)
-    {
-        $this->dateRangeStart = $fromDate;
-        return $this;
-    }
-
-    public function to(Carbon $endDate)
-    {
-        $this->dateRangeEnd = $endDate;
         return $this;
     }
 
