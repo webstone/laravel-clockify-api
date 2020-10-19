@@ -1,4 +1,4 @@
-# Clockify laravel api WIP
+# Laravel Clockify API WIP
 
 Laravel repository to fetch reports from the Clockify.me reports API.
 
