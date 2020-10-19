@@ -19,7 +19,9 @@
     ],
     "require": {
         "php": ">=7.4",
-        "laravel/framework": "^6.0|^7.0|^8.0"
+        "laravel/framework": "^6.0|^7.0|^8.0",
+        "guzzlehttp/guzzle": "^7.2",
+        "orchestra/testbench": "^6.2"
     },
     "require-dev": {
       "phpunit/phpunit": "^9.3",
@@ -34,7 +36,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Sourceboat\\LaravelClockifyApi\\Test\\": "tests"
+            "Sourceboat\\LaravelClockifyApi\\Tests\\": "tests"
         }
     },
     "scripts": {
