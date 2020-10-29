@@ -70,6 +70,7 @@ $summaryResponseBody = ClockifyRepository::makeSummaryReport()
 | Attribute | function | default behaviour or `value` <br>(when not set)| possible for reports |
 |---|---|---|---|
 | `users` | `users(array $userIds)` | all | ALL |
+| `tasks` | `tasks(array $taskIds)` | all | ALL |
 | `containsTags` | `containsTags(array $tagIds)` | `CONTAINS` | ALL |
 | `containsOnlyTags` | `containsOnlyTags(array $tagIds)` | `CONTAINS` | ALL |
 | `doesNotContainTags` | `doesNotContainTags(array $tagIds)` | `CONTAINS` | ALL || `tasks` | `tasks(array $taskIds)` | all | ALL |
