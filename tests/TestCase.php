@@ -2,10 +2,10 @@
 
 namespace Sourceboat\LaravelClockifyApi\Tests;
 
-use Config;
-use Orchestra\Testbench\TestCase as BaseTestCase;
+use Illuminate\Support\Facades\Config;
+use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
-class TestCase extends BaseTestCase
+class TestCase extends OrchestraTestCase
 {
 
     public function setUp(): void
