@@ -11,21 +11,25 @@ class DetailedReportTest extends TestCase
 
     /**
      * @dataProvider provider
+     *
+     * @param array $requestAtt
+     * @param array $expected
+     * @return void
      */
-    public function test(array $requestAtt, $expected): void
+    public function test(array $requestAtt, array $expected): void
     {
         Http::fake();
 
         $summaryReport = ClockifyRepository::makeDetailedReport();
 
         // add attributes to request by calling its function (defined by keys)
-        collect($requestAtt)->each(function ($value, $attribute) use ($summaryReport) {
+        collect($requestAtt)->each(static function ($value, $attribute) use ($summaryReport) {
             $summaryReport->{$attribute}($value);
         });
 
         $summaryReport->get();
 
-        Http::assertSent(function ($request) use ($expected) {
+        Http::assertSent(static function ($request) use ($expected) {
             return $request->body() === json_encode($expected);
         });
     }
@@ -59,7 +63,7 @@ class DetailedReportTest extends TestCase
                         'contains' => 'CONTAINS',
                         'status' => 'ALL',
                     ],
-                ]
+                ],
             ],
             'User, tasks' => [
                 [
@@ -79,13 +83,13 @@ class DetailedReportTest extends TestCase
                         'ids' => $tasks,
                         'status' => 'ALL',
                     ],
-                ]
+                ],
             ],
             'Users, tasks, sortOrder' => [
                 [
                     'users' => $users,
                     'tasks' => $tasks,
-                    'sortOrder' => 'ASCENDING'
+                    'sortOrder' => 'ASCENDING',
                 ],
                 [
                     'dateRangeStart' => $defaultStart,
@@ -101,14 +105,14 @@ class DetailedReportTest extends TestCase
                         'ids' => $tasks,
                         'status' => 'ALL',
                     ],
-                ]
+                ],
             ],
             'Users, tasks, sortOrder, from' => [
                 [
                     'users' => $users,
                     'tasks' => $tasks,
                     'sortOrder' => 'ASCENDING',
-                    'from' => $from
+                    'from' => $from,
                 ],
                 [
                     'dateRangeStart' => $from,
@@ -124,7 +128,7 @@ class DetailedReportTest extends TestCase
                         'ids' => $tasks,
                         'status' => 'ALL',
                     ],
-                ]
+                ],
             ],
             'Users, tasks, sortOrder, from, to' => [
                 [
@@ -132,7 +136,7 @@ class DetailedReportTest extends TestCase
                     'tasks' => $tasks,
                     'sortOrder' => 'ASCENDING',
                     'from' => $from,
-                    'to' => $to
+                    'to' => $to,
                 ],
                 [
                     'dateRangeStart' => $from,
@@ -148,7 +152,7 @@ class DetailedReportTest extends TestCase
                         'ids' => $tasks,
                         'status' => 'ALL',
                     ],
-                ]
+                ],
             ],
             'Users, tasks, sortOrder, from, to, containsTags' => [
                 [
@@ -178,7 +182,7 @@ class DetailedReportTest extends TestCase
                         'ids' => $tasks,
                         'status' => 'ALL',
                     ],
-                ]
+                ],
             ],
             'Users, tasks, sortOrder, from, to, containsOnlyTags' => [
                 [
@@ -208,7 +212,7 @@ class DetailedReportTest extends TestCase
                         'ids' => $tasks,
                         'status' => 'ALL',
                     ],
-                ]
+                ],
             ],
             'Users, tasks, sortOrder, from, to, doesNotContainTags' => [
                 [
@@ -238,7 +242,7 @@ class DetailedReportTest extends TestCase
                         'ids' => $tasks,
                         'status' => 'ALL',
                     ],
-                ]
+                ],
             ],
             'Users, tasks, sortOrder, from, to, doesNotContainTags, page 2' => [
                 [
@@ -269,7 +273,7 @@ class DetailedReportTest extends TestCase
                         'ids' => $tasks,
                         'status' => 'ALL',
                     ],
-                ]
+                ],
             ],
             'Users, tasks, sortOrder, from, to, doesNotContainTags, page 2, pageSize 20' => [
                 [
@@ -301,7 +305,7 @@ class DetailedReportTest extends TestCase
                         'ids' => $tasks,
                         'status' => 'ALL',
                     ],
-                ]
+                ],
             ],
         ];
     }

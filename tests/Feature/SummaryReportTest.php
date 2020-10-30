@@ -11,21 +11,25 @@ class SummaryReportTest extends TestCase
 
     /**
      * @dataProvider provider
+     *
+     * @param array $requestAtt
+     * @param array $expected
+     * @return void
      */
-    public function test(array $requestAtt, $expected): void
+    public function test(array $requestAtt, array $expected): void
     {
         Http::fake();
 
         $summaryReport = ClockifyRepository::makeSummaryReport();
 
         // add attributes to request by calling its function (defined by keys)
-        collect($requestAtt)->each(function ($value, $attribute) use ($summaryReport) {
+        collect($requestAtt)->each(static function ($value, $attribute) use ($summaryReport) {
             $summaryReport->{$attribute}($value);
         });
 
         $summaryReport->get();
 
-        Http::assertSent(function ($request) use ($expected) {
+        Http::assertSent(static function ($request) use ($expected) {
             return $request->body() === json_encode($expected);
         });
     }
@@ -40,10 +44,10 @@ class SummaryReportTest extends TestCase
             1 => 'PROJECT',
             2 => 'TIMEENTRY',
         ];
-        $customFilterGroups =  [
+        $customFilterGroups = [
             0 => 'USER',
             1 => 'TASK',
-            2 => 'TAG'
+            2 => 'TAG',
         ];
         $defaultStart = now()->startOfYear()->toISOString();
         $defaultEnd = now()->endOfYear()->toISOString();
@@ -66,7 +70,7 @@ class SummaryReportTest extends TestCase
                         'contains' => 'CONTAINS',
                         'status' => 'ALL',
                     ],
-                ]
+                ],
             ],
             'User, tasks' => [
                 [
@@ -88,13 +92,13 @@ class SummaryReportTest extends TestCase
                         'ids' => $tasks,
                         'status' => 'ALL',
                     ],
-                ]
+                ],
             ],
             'Users, tasks, sortOrder' => [
                 [
                     'users' => $users,
                     'tasks' => $tasks,
-                    'sortOrder' => 'ASCENDING'
+                    'sortOrder' => 'ASCENDING',
                 ],
                 [
                     'dateRangeStart' => $defaultStart,
@@ -112,14 +116,14 @@ class SummaryReportTest extends TestCase
                         'ids' => $tasks,
                         'status' => 'ALL',
                     ],
-                ]
+                ],
             ],
             'Users, tasks, sortOrder, from' => [
                 [
                     'users' => $users,
                     'tasks' => $tasks,
                     'sortOrder' => 'ASCENDING',
-                    'from' => $from
+                    'from' => $from,
                 ],
                 [
                     'dateRangeStart' => $from,
@@ -137,7 +141,7 @@ class SummaryReportTest extends TestCase
                         'ids' => $tasks,
                         'status' => 'ALL',
                     ],
-                ]
+                ],
             ],
             'Users, tasks, sortOrder, from, to' => [
                 [
@@ -145,7 +149,7 @@ class SummaryReportTest extends TestCase
                     'tasks' => $tasks,
                     'sortOrder' => 'ASCENDING',
                     'from' => $from,
-                    'to' => $to
+                    'to' => $to,
                 ],
                 [
                     'dateRangeStart' => $from,
@@ -163,7 +167,7 @@ class SummaryReportTest extends TestCase
                         'ids' => $tasks,
                         'status' => 'ALL',
                     ],
-                ]
+                ],
             ],
             'Users, tasks, sortOrder, from, to, containsTags' => [
                 [
@@ -195,7 +199,7 @@ class SummaryReportTest extends TestCase
                         'ids' => $tasks,
                         'status' => 'ALL',
                     ],
-                ]
+                ],
             ],
             'Users, tasks, sortOrder, from, to, containsOnlyTags' => [
                 [
@@ -227,7 +231,7 @@ class SummaryReportTest extends TestCase
                         'ids' => $tasks,
                         'status' => 'ALL',
                     ],
-                ]
+                ],
             ],
             'Users, tasks, sortOrder, from, to, doesNotContainTags' => [
                 [
@@ -259,7 +263,7 @@ class SummaryReportTest extends TestCase
                         'ids' => $tasks,
                         'status' => 'ALL',
                     ],
-                ]
+                ],
             ],
             'Users, tasks, sortOrder, from, to, containsTags, custom filterGroups' => [
                 [
@@ -292,7 +296,7 @@ class SummaryReportTest extends TestCase
                         'ids' => $tasks,
                         'status' => 'ALL',
                     ],
-                ]
+                ],
             ],
         ];
     }
